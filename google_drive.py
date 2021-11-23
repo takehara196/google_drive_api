@@ -30,9 +30,9 @@ def main():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         elif os.path.exists(
-                'config/client_secret_450956917642-oe4jngmvfpcnucog8j4oi5c56eged08j.apps.googleusercontent.com.json'):
+                'config/client_secret.json'):
             flow = InstalledAppFlow.from_client_secrets_file(
-                'config/client_secret_450956917642-oe4jngmvfpcnucog8j4oi5c56eged08j.apps.googleusercontent.com.json', SCOPES)
+                'config/client_secret.json', SCOPES)
             creds = flow.run_local_server(port=0)
         with open('config/token.pickle', 'wb') as token:
             pickle.dump(creds, token)
@@ -44,7 +44,7 @@ def main():
     # Folfer list
     folders = None
     if drive:
-        results = drivecd.files().list(
+        results = drive.files().list(
             pageSize=100,
             fields='nextPageToken, files(id, name)',
             q='name="' + FOLDER_NAME + '" and mimeType="application/vnd.google-apps.folder"'
