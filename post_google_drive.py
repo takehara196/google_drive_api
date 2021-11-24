@@ -32,7 +32,7 @@ file = drive_service.files().create(body=file_metadata,
 print('Folder ID: %s' % file.get("id"))
 
 ############################
-# ファイル取得
+# ファイルアップロード
 folder_id = file.get("id")
 print(folder_id)
 file_metadata = {
